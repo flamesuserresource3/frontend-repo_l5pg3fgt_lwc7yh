@@ -1,28 +1,54 @@
-import { useState } from 'react'
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Pricing from "./components/Pricing";
+import Testimonials from "./components/Testimonials";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Footer() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <footer className="border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p className="text-sm text-slate-600">© {new Date().getFullYear()} EPLink. Semua hak dilindungi.</p>
+        <div className="flex items-center gap-4 text-sm">
+          <a href="#fitur" className="text-slate-600 hover:text-slate-900">Fitur</a>
+          <a href="#paket" className="text-slate-600 hover:text-slate-900">Paket</a>
+          <a href="#review" className="text-slate-600 hover:text-slate-900">Review</a>
         </div>
       </div>
-    </div>
-  )
+    </footer>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <div className="min-h-screen bg-white text-slate-900">
+      <Header />
+      <main>
+        <Hero />
+        <section id="fitur" className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-6">
+              {[{
+                title: "Siap Pakai & Mudah",
+                desc: "Pasang widget live chat dalam hitungan menit. Tanpa coding, tanpa ribet.",
+              }, {
+                title: "Kolaborasi Tim",
+                desc: "Bagi antrian, atur prioritas, dan pantau performa tiap agen.",
+              }, {
+                title: "Analitik Cerdas",
+                desc: "Lihat jam ramai, topik pertanyaan, dan kepuasan pelanggan untuk keputusan cepat.",
+              }].map((f) => (
+                <div key={f.title} className="rounded-2xl border bg-white p-6 shadow-sm">
+                  <h3 className="font-semibold text-lg" style={{ color: "#0d47a1" }}>{f.title}</h3>
+                  <p className="mt-2 text-slate-600">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <Pricing />
+        <Testimonials />
+      </main>
+      <Footer />
+    </div>
+  );
+}
